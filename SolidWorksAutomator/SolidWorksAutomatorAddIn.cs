@@ -30,7 +30,12 @@ namespace SolidWorksAutomator
             switch (spec)
             {
                 case SWACommands_e.TestComand:
-                    Application.ShowMessageBox("Test command");
+                    var prpManager = new SAPropertyManager();
+
+                    prpManager.TextMessage = "You pressed a button";
+
+                    prpManager.TestFunction();
+
                     break;
             }
         }
