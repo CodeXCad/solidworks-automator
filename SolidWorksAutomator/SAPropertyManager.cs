@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xarial.XCad.SolidWorks;
 
 namespace SolidWorksAutomator
 {
@@ -31,9 +32,9 @@ namespace SolidWorksAutomator
         }
         #endregion
 
-        public void TestFunction()
+        public void TestFunction(ISwApplication app)
         {
-            Debug.Print(this.TextMessage);
+            app.ShowMessageBox(this.TextMessage);
         }
     }
 }
