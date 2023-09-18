@@ -34,11 +34,9 @@ namespace SolidWorksAutomator
 
                     var swApp = this.Application;
 
-                    swApp.ShowMessageBox("Test");
+                    prpManager.TextMessage = "You pressed a button!";
 
-                    prpManager.TextMessage = "You pressed a button";
-
-                    prpManager.TestFunction();
+                    prpManager.TestFunction(swApp);
 
                     break;
             }
