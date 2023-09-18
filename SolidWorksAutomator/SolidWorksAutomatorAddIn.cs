@@ -32,6 +32,10 @@ namespace SolidWorksAutomator
                 case SWACommands_e.TestComand:
                     var prpManager = new SAPropertyManager();
 
+                    var swApp = this.Application;
+
+                    swApp.ShowMessageBox("Test");
+
                     prpManager.TextMessage = "You pressed a button";
 
                     prpManager.TestFunction();
