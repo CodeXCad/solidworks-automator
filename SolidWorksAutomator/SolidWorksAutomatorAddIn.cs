@@ -21,13 +21,13 @@ namespace SolidWorksAutomator
             TestComand
         }
 
-        public ISwApplication swApp { get; set; }
+        public ISwApplication SwApp { get; set; }
 
         public override void OnConnect()
         {
             CommandManager.AddCommandGroup<SWACommands_e>().CommandClick += OnCommandClick;
 
-            swApp = this.Application;
+            SwApp = this.Application;
         }
 
         private void OnCommandClick(SWACommands_e spec)
@@ -37,9 +37,7 @@ namespace SolidWorksAutomator
                 case SWACommands_e.TestComand:
                     var prpManager = new SAPropertyManager();                    
 
-                    prpManager.TextMessage = "You pressed a button!";
-
-                    prpManager.TestFunction(swApp);
+                    prpManager.OpenDocument(SwApp);
 
                     break;
             }

@@ -1,10 +1,13 @@
-﻿using System;
+﻿using SolidWorks.Interop.sldworks;
+using SolidWorks.Interop.swconst;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xarial.XCad.SolidWorks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace SolidWorksAutomator
 {
@@ -32,9 +35,14 @@ namespace SolidWorksAutomator
         }
         #endregion
 
-        public void TestFunction(ISwApplication app)
+        public void OpenDocument(ISwApplication app)
         {
-            app.ShowMessageBox(this.TextMessage);
+            SldWorks swApp = (SldWorks)app.Sw;
+
+            int err = -1;
+            int warn = -1;
+
+            swApp.OpenDoc6(@"C:\.test\Part1.SLDPRT", (int)swDocumentTypes_e.swDocPART, (int)swOpenDocOptions_e.swOpenDocOptions_Silent,"", err, warn);
         }
     }
 }
