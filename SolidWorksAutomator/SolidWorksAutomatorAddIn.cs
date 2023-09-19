@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xarial.XCad.Base.Attributes;
+using Xarial.XCad.SolidWorks;
 using Xarial.XCad.UI.Commands;
 
 namespace SolidWorksAutomator
@@ -19,10 +20,14 @@ namespace SolidWorksAutomator
             [Description("A test command to display a message to the user")]
             TestComand
         }
-        
+
+        public ISwApplication swApp { get; set; }
+
         public override void OnConnect()
         {
             CommandManager.AddCommandGroup<SWACommands_e>().CommandClick += OnCommandClick;
+
+            swApp = this.Application;
         }
 
         private void OnCommandClick(SWACommands_e spec)
@@ -30,9 +35,7 @@ namespace SolidWorksAutomator
             switch (spec)
             {
                 case SWACommands_e.TestComand:
-                    var prpManager = new SAPropertyManager();
-
-                    var swApp = this.Application;
+                    var prpManager = new SAPropertyManager();                    
 
                     prpManager.TextMessage = "You pressed a button!";
 
