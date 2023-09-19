@@ -19,9 +19,13 @@ namespace SolidWorksAutomator
         #region Class properties
 
         /// <summary>
-        /// The text to be showed to the user
+        /// The name of the property to update
         /// </summary>
-        public string TextMessage {  get; set; }
+        public string PrpName {  get; set; }
+
+        public string PrpType { get; set; }
+
+        public string PrpValue { get; set; }
 
         #endregion
 
@@ -31,18 +35,19 @@ namespace SolidWorksAutomator
         /// </summary>
         public SAPropertyManager()
         {
-            TextMessage = string.Empty;
+            
         }
         #endregion
 
-        public void OpenDocument(ISwApplication app)
+        /// <summary>
+        /// Set the value of the author 
+        /// </summary>
+        /// <param name="app"></param>
+        public void SetAuthor(ISwApplication app)
         {
             SldWorks swApp = (SldWorks)app.Sw;
 
-            int err = -1;
-            int warn = -1;
-
-            swApp.OpenDoc6(@"C:\.test\Part1.SLDPRT", (int)swDocumentTypes_e.swDocPART, (int)swOpenDocOptions_e.swOpenDocOptions_Silent,"", err, warn);
+            
         }
     }
 }

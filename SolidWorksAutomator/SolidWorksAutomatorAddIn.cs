@@ -37,7 +37,7 @@ namespace SolidWorksAutomator
                 case SWACommands_e.TestComand:
                     var prpManager = new SAPropertyManager();                    
 
-                    prpManager.OpenDocument(SwApp);
+                    prpManager.SetAuthor(SwApp);
 
                     break;
             }
