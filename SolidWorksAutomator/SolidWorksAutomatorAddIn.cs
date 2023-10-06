@@ -39,24 +39,31 @@ namespace SolidWorksAutomator
             switch (spec)
             {
                 case SWACommands_e.SetAuthor:
-
-                    var prpManager = new SAPropertyManager();
-
-                    string PRP_NAME = "Disegnatore";
-                    string PRP_VALUE = "Mollo A.";
-
-                    prpManager.SetCustomProperty(PRP_NAME, PRP_VALUE);
-
+                    SetAuthor();
                     break;
                 case SWACommands_e.DeleteAuthor:
-                    var prpMgr = new SAPropertyManager();
-
-                    string prpName = "Disegnatore";
-
-                    prpMgr.SetCustomPropertyEmpty(prpName);
-
+                    DeleteAuthor();
                     break;
             }
+        }
+
+        private void SetAuthor()
+        {
+            var prpManager = new SAPropertyManager();
+
+            string PRP_NAME = "Disegnatore";
+            string PRP_VALUE = "Mollo A.";
+
+            prpManager.SetCustomProperty(PRP_NAME, PRP_VALUE);
+        }
+
+        private void DeleteAuthor()
+        {
+            var prpMgr = new SAPropertyManager();
+
+            string prpName = "Disegnatore";
+
+            prpMgr.SetCustomPropertyEmpty(prpName);
         }
     }
 }
