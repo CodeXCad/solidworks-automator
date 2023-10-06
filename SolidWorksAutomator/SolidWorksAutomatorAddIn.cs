@@ -17,9 +17,12 @@ namespace SolidWorksAutomator
         [Title("SolidWorks Automator")]
         public enum SWACommands_e
         {
-            [Title("Test command")]
-            [Description("A test command to display a message to the user")]
-            TestComand
+            [Title("Set author")]
+            [Description("Write the author in the custom properties")]
+            SetAuthor,
+            [Title("Delete author")]
+            [Description("Delete the author from the custom property")]
+            DeleteAuthor
         }
         public static SldWorks swApp { get; set; }
 
@@ -28,19 +31,29 @@ namespace SolidWorksAutomator
             CommandManager.AddCommandGroup<SWACommands_e>().CommandClick += OnCommandClick;
 
             swApp = (SldWorks)this.Application.Sw;
+            
         }
 
         private void OnCommandClick(SWACommands_e spec)
         {
             switch (spec)
             {
-                case SWACommands_e.TestComand:
+                case SWACommands_e.SetAuthor:
+
                     var prpManager = new SAPropertyManager();
 
                     string PRP_NAME = "Disegnatore";
                     string PRP_VALUE = "Mollo A.";
 
                     prpManager.SetCustomProperty(PRP_NAME, PRP_VALUE);
+
+                    break;
+                case SWACommands_e.DeleteAuthor:
+                    var prpMgr = new SAPropertyManager();
+
+                    string prpName = "Disegnatore";
+
+                    prpMgr.SetCustomPropertyEmpty(prpName);
 
                     break;
             }
