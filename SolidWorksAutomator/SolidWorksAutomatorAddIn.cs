@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SolidWorks.Interop.sldworks;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -20,14 +21,13 @@ namespace SolidWorksAutomator
             [Description("A test command to display a message to the user")]
             TestComand
         }
-
-        public ISwApplication SwApp { get; set; }
+        public static SldWorks swApp { get; set; }
 
         public override void OnConnect()
         {
             CommandManager.AddCommandGroup<SWACommands_e>().CommandClick += OnCommandClick;
 
-            SwApp = this.Application;
+            swApp = (SldWorks)this.Application.Sw;
         }
 
         private void OnCommandClick(SWACommands_e spec)
@@ -38,9 +38,9 @@ namespace SolidWorksAutomator
                     var prpManager = new SAPropertyManager();
 
                     string PRP_NAME = "Disegnatore";
-                    string PRP_VALUE = "Andrea Mollo";
+                    string PRP_VALUE = "Mollo A.";
 
-                    prpManager.SetCustomProperty(SwApp, PRP_NAME, PRP_VALUE);
+                    prpManager.SetCustomProperty(PRP_NAME, PRP_VALUE);
 
                     break;
             }

@@ -45,11 +45,10 @@ namespace SolidWorksAutomator
         /// <param name="app">The istance of SolidWorks app</param>
         /// <param name="prpName">The name of the property to be changed</param>
         /// <param name="prpValue">The value of the property to be changed</param>
-        public void SetCustomProperty(ISwApplication app, string prpName, string prpValue)
+        public void SetCustomProperty(string prpName, string prpValue)
         {
-            SldWorks swApp = (SldWorks)app.Sw;
 
-            ModelDoc2 swModel = swApp.IActiveDoc2;
+            ModelDoc2 swModel = SolidWorksAutomatorAddIn.swApp.IActiveDoc2;
 
             CustomPropertyManager swCustProp = swModel.Extension.get_CustomPropertyManager("");
 
