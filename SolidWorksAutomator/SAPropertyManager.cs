@@ -43,7 +43,6 @@ namespace SolidWorksAutomator
         /// <summary>
         /// Set the value of a custom property
         /// </summary>
-        /// <param name="app">The istance of SolidWorks app</param>
         /// <param name="prpName">The name of the property to be changed</param>
         /// <param name="prpValue">The value of the property to be changed</param>
         public void SetCustomProperty(string prpName, string prpValue)
@@ -59,9 +58,7 @@ namespace SolidWorksAutomator
         /// <summary>
         /// Set the value of a custom property to an empty string
         /// </summary>
-        /// <param name="app">The istance of SolidWorks app</param>
         /// <param name="prpName">The name of the property to be changed</param>
-        /// <param name="prpValue">The value of the property to be changed</param>
         public void SetCustomPropertyEmpty(string prpName)
         {
 
