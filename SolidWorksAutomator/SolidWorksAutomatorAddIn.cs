@@ -35,9 +35,12 @@ namespace SolidWorksAutomator
             switch (spec)
             {
                 case SWACommands_e.TestComand:
-                    var prpManager = new SAPropertyManager();                    
+                    var prpManager = new SAPropertyManager();
 
-                    prpManager.SetAuthor(SwApp);
+                    string PRP_NAME = "Disegnatore";
+                    string PRP_VALUE = "Andrea Mollo";
+
+                    prpManager.SetCustomProperty(SwApp, PRP_NAME, PRP_VALUE);
 
                     break;
             }
