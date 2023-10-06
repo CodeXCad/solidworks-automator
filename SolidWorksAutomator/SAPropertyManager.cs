@@ -40,9 +40,11 @@ namespace SolidWorksAutomator
         #endregion
 
         /// <summary>
-        /// Set the value of the author custom property
+        /// Set the value of a custom property
         /// </summary>
-        /// <param name="app"></param>
+        /// <param name="app">The istance of SolidWorks app</param>
+        /// <param name="prpName">The name of the property to be changed</param>
+        /// <param name="prpValue">The value of the property to be changed</param>
         public void SetCustomProperty(ISwApplication app, string prpName, string prpValue)
         {
             SldWorks swApp = (SldWorks)app.Sw;
