@@ -40,14 +40,18 @@ namespace SolidWorksAutomator
         #endregion
 
         /// <summary>
-        /// Set the value of the author 
+        /// Set the value of the author custom property
         /// </summary>
         /// <param name="app"></param>
         public void SetAuthor(ISwApplication app)
         {
             SldWorks swApp = (SldWorks)app.Sw;
 
-            
+            ModelDoc2 swModel = swApp.IActiveDoc2;
+
+            CustomPropertyManager swCustProp = swModel.Extension.get_CustomPropertyManager("");
+
+            swCustProp.Add3("Autore", (int)swCustomInfoType_e.swCustomInfoText, "Mollo A.", (int)swCustomPropertyAddOption_e.swCustomPropertyReplaceValue);
         }
     }
 }
