@@ -1,10 +1,13 @@
-﻿using System;
+﻿using SolidWorks.Interop.sldworks;
+using SolidWorks.Interop.swconst;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xarial.XCad.SolidWorks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace SolidWorksAutomator
 {
@@ -16,9 +19,13 @@ namespace SolidWorksAutomator
         #region Class properties
 
         /// <summary>
-        /// The text to be showed to the user
+        /// The name of the property to update
         /// </summary>
-        public string TextMessage {  get; set; }
+        public string PrpName {  get; set; }
+
+        public string PrpType { get; set; }
+
+        public string PrpValue { get; set; }
 
         #endregion
 
@@ -28,13 +35,40 @@ namespace SolidWorksAutomator
         /// </summary>
         public SAPropertyManager()
         {
-            TextMessage = string.Empty;
+            
         }
         #endregion
 
-        public void TestFunction(ISwApplication app)
+        #region Methods
+        /// <summary>
+        /// Set the value of a custom property
+        /// </summary>
+        /// <param name="prpName">The name of the property to be changed</param>
+        /// <param name="prpValue">The value of the property to be changed</param>
+        public void SetCustomProperty(string prpName, string prpValue)
         {
-            app.ShowMessageBox(this.TextMessage);
+
+            ModelDoc2 swModel = SolidWorksAutomatorAddIn.swApp.IActiveDoc2;
+
+            CustomPropertyManager swCustProp = swModel.Extension.get_CustomPropertyManager("");
+
+            swCustProp.Add3(prpName, (int)swCustomInfoType_e.swCustomInfoText, prpValue, (int)swCustomPropertyAddOption_e.swCustomPropertyReplaceValue);
         }
+
+        /// <summary>
+        /// Set the value of a custom property to an empty string
+        /// </summary>
+        /// <param name="prpName">The name of the property to be changed</param>
+        public void SetCustomPropertyEmpty(string prpName)
+        {
+
+            ModelDoc2 swModel = SolidWorksAutomatorAddIn.swApp.IActiveDoc2;
+
+            CustomPropertyManager swCustProp = swModel.Extension.get_CustomPropertyManager("");
+
+            swCustProp.Add3(prpName, (int)swCustomInfoType_e.swCustomInfoText, "", (int)swCustomPropertyAddOption_e.swCustomPropertyReplaceValue);
+        }
+
+        #endregion
     }
 }
