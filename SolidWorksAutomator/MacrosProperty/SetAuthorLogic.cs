@@ -1,4 +1,5 @@
-﻿using SolidWorks.Interop.sldworks;
+﻿using EdmLib;
+using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;
 using SolidWorksAutomator.Helpers;
 using System;
@@ -17,9 +18,6 @@ namespace SolidWorksAutomator
         /// </summary>
         public static void SetAuthor()
         {
-            string PRP_NAME = "Disegnatore";
-            string PRP_VALUE = "Mollo A.";
-
             ModelDoc2 swModel = SolidWorksAutomatorAddIn.swApp.IActiveDoc2;
 
             #region Pre-conditions validation
@@ -45,6 +43,22 @@ namespace SolidWorksAutomator
             }
 
             #endregion
+
+            // Connect to PDM
+            IEdmVault5 valut = new EdmVault5();
+            valut.LoginAuto(GlobalConfig.VaultName, 0);
+
+            if (valut.IsLoggedIn)
+            {
+                IEdmUserMgr5 userMgr = (IEdmUserMgr5)valut;
+
+                IEdmUser6 user = (IEdmUser6)userMgr.GetLoggedInUser();
+
+                string userName = (string)user.UserData;
+            }
+
+            string PRP_VALUE = "Mollo A.";
+            string PRP_NAME = "Disegnatore";
 
             // Check if something is selected and get the list of selected components
             List<Component2> vComp = new List<Component2>();
