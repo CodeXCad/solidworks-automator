@@ -9,5 +9,9 @@ namespace SolidWorksAutomator
     public static class GlobalConfig
     {
         public const string VaultName = "VAULT_BL";
+
+        public const string AuthorPropName = "Disegnatore";
+
+        public const string AuthorDefault = "Author";
     }
 }

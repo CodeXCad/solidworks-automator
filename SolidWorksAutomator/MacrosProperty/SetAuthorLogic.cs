@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace SolidWorksAutomator
 {
@@ -48,19 +49,18 @@ namespace SolidWorksAutomator
             IEdmVault5 valut = new EdmVault5();
             valut.LoginAuto(GlobalConfig.VaultName, 0);
 
+            string userName = "";
+
             if (valut.IsLoggedIn)
             {
-                IEdmUserMgr5 userMgr = (IEdmUserMgr5)valut;
-
-                IEdmUser6 user = (IEdmUser6)userMgr.GetLoggedInUser();
-
-                string userName = (string)user.UserData;
+                userName = GetPdmUserName(valut);
+            }
+            else
+            {
+                userName = GlobalConfig.AuthorDefault;
             }
 
-            string PRP_VALUE = "Mollo A.";
-            string PRP_NAME = "Disegnatore";
-
-            // Check if something is selected and get the list of selected components
+            // Get the list of selected components
             List<Component2> vComp = new List<Component2>();
 
             vComp = SASelectionManager.GetSelectedComponents((SelectionMgr)swModel.SelectionManager);
@@ -87,8 +87,17 @@ namespace SolidWorksAutomator
             {
                 var prpManager = new SAPropertyManager();
 
-                prpManager.SetCustomProperty(models[i], PRP_NAME, PRP_VALUE);                
+                prpManager.SetCustomProperty(models[i], GlobalConfig.AuthorPropName, userName);                
             }
+        }
+
+        public static string GetPdmUserName(IEdmVault5 pdmValut)
+        {
+            IEdmUserMgr5 userMgr = (IEdmUserMgr5)pdmValut;
+
+            IEdmUser6 user = (IEdmUser6)userMgr.GetLoggedInUser();
+
+            return (string)user.UserData;
         }
     }
 }
