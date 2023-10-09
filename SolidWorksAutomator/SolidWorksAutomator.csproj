@@ -69,7 +69,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SAPropertyManager.cs" />
+    <Compile Include="Helpers\SAPropertyManager.cs" />
+    <Compile Include="MacrosProperty\SetAuthorLogic.cs" />
     <Compile Include="SolidWorksAutomatorAddIn.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
