@@ -1,5 +1,6 @@
 ﻿using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;
+using SolidWorksAutomator.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,16 +43,22 @@ namespace SolidWorksAutomator
 
             #endregion
 
-            // Check if something is selected
-            // If something is selected get the list of model objects
+            // Check if something is selected and get the list of selected components
+            List<Component2> vComp = new List<Component2>();
+
+            vComp = SASelectionManager.GetSelectedComponents((SelectionMgr)swModel.SelectionManager);
+
             // If nothing is selected add the active model to the list of model object
-            // SetCustomProperty to the list of model object
-            var prpManager = new SAPropertyManager();
+            if (vComp.Count == 0)
+            {
+                // SetCustomProperty to the list of model object
+                var prpManager = new SAPropertyManager();
 
-            string PRP_NAME = "Disegnatore";
-            string PRP_VALUE = "Mollo A.";
+                string PRP_NAME = "Disegnatore";
+                string PRP_VALUE = "Mollo A.";
 
-            prpManager.SetCustomProperty(PRP_NAME, PRP_VALUE);
+                prpManager.SetCustomProperty(PRP_NAME, PRP_VALUE);
+            }
         }
     }
 }
