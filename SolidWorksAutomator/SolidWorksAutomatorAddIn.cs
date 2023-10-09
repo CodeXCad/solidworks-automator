@@ -1,4 +1,5 @@
 ﻿using SolidWorks.Interop.sldworks;
+using SolidWorksAutomator.MacrosProperty;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -39,22 +40,12 @@ namespace SolidWorksAutomator
             switch (spec)
             {
                 case SWACommands_e.SetAuthor:
-                    SetAuthor();
+                    SetAuthorLogic();
                     break;
                 case SWACommands_e.DeleteAuthor:
                     DeleteAuthor();
                     break;
             }
-        }
-
-        private void SetAuthor()
-        {
-            var prpManager = new SAPropertyManager();
-
-            string PRP_NAME = "Disegnatore";
-            string PRP_VALUE = "Mollo A.";
-
-            prpManager.SetCustomProperty(PRP_NAME, PRP_VALUE);
         }
 
         private void DeleteAuthor()
