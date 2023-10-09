@@ -9,7 +9,7 @@ namespace SolidWorksAutomator.MacrosProperty
     public class SetAuthorLogic
     {
         
-        public void SetAuthor()
+        public static void SetAuthor()
         {
             var prpManager = new SAPropertyManager();
 

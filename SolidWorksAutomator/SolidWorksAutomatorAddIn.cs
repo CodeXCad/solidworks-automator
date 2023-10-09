@@ -40,7 +40,7 @@ namespace SolidWorksAutomator
             switch (spec)
             {
                 case SWACommands_e.SetAuthor:
-                    SetAuthorLogic();
+                    SetAuthorLogic.SetAuthor();
                     break;
                 case SWACommands_e.DeleteAuthor:
                     DeleteAuthor();
