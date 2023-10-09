@@ -17,6 +17,9 @@ namespace SolidWorksAutomator
         /// </summary>
         public static void SetAuthor()
         {
+            string PRP_NAME = "Disegnatore";
+            string PRP_VALUE = "Mollo A.";
+
             ModelDoc2 swModel = SolidWorksAutomatorAddIn.swApp.IActiveDoc2;
 
             #region Pre-conditions validation
@@ -49,15 +52,28 @@ namespace SolidWorksAutomator
             vComp = SASelectionManager.GetSelectedComponents((SelectionMgr)swModel.SelectionManager);
 
             // If nothing is selected add the active model to the list of model object
+            List<ModelDoc2> models = new List<ModelDoc2>();
+
             if (vComp.Count == 0)
             {
-                // SetCustomProperty to the list of model object
+                models.Add(swModel);
+                
+            }
+            else
+            {
+                for (int i = 0; i < vComp.Count; i++)
+                {
+                    ModelDoc2 selModel = (ModelDoc2)vComp[i].GetModelDoc2();
+                    models.Add(selModel);
+                }
+            }
+
+            // SetCustomProperty to the list of model object
+            for (int i = 0; i < models.Count; i++)
+            {
                 var prpManager = new SAPropertyManager();
 
-                string PRP_NAME = "Disegnatore";
-                string PRP_VALUE = "Mollo A.";
-
-                prpManager.SetCustomProperty(PRP_NAME, PRP_VALUE);
+                prpManager.SetCustomProperty(models[i], PRP_NAME, PRP_VALUE);                
             }
         }
     }
