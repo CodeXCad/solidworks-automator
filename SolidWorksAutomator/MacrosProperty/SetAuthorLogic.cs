@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SolidWorksAutomator.MacrosProperty
+namespace SolidWorksAutomator
 {
     public class SetAuthorLogic
     {
-        
+        /// <summary>
+        /// Write the author in the custom properties
+        /// </summary>
         public static void SetAuthor()
         {
             var prpManager = new SAPropertyManager();

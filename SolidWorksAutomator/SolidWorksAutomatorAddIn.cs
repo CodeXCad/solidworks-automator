@@ -1,6 +1,4 @@
 ﻿using SolidWorks.Interop.sldworks;
-using SolidWorksAutomator.MacrosProperty;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
