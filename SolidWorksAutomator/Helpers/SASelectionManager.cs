@@ -13,6 +13,7 @@ namespace SolidWorksAutomator.Helpers
         /// Get the selected components
         /// </summary>
         /// <param name="selMgr">The model selection manager object</param>
+        /// <returns>A list of Component2</returns>
         public static List<Component2> GetSelectedComponents(SelectionMgr selMgr)
         {
             List<Component2> swComp = new List<Component2>();
