@@ -12,7 +12,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace SolidWorksAutomator
 {
-    public class SetAuthorLogic
+    public class SetAuthorMacro
     {
         /// <summary>
         /// Write the author in the custom properties
@@ -45,20 +45,12 @@ namespace SolidWorksAutomator
 
             #endregion
 
-            // Connect to PDM
+            // Get user from PDM
             IEdmVault5 valut = new EdmVault5();
-            valut.LoginAuto(GlobalConfig.VaultName, 0);
 
             string userName = "";
 
-            if (valut.IsLoggedIn)
-            {
-                userName = GetPdmUserName(valut);
-            }
-            else
-            {
-                userName = GlobalConfig.AuthorDefault;
-            }
+            userName = GetPdmUserName(valut);
 
             // Get the list of selected components
             List<Component2> vComp = new List<Component2>();
@@ -91,13 +83,30 @@ namespace SolidWorksAutomator
             }
         }
 
+        /// <summary>
+        /// Get the username from PDM
+        /// </summary>
+        /// <param name="pdmValut">The istance to the Vault</param>
+        /// <returns>The string of the username connected to the Vault</returns>
         public static string GetPdmUserName(IEdmVault5 pdmValut)
         {
-            IEdmUserMgr5 userMgr = (IEdmUserMgr5)pdmValut;
+            pdmValut.LoginAuto(GlobalConfig.VaultName, 0);
 
-            IEdmUser6 user = (IEdmUser6)userMgr.GetLoggedInUser();
+            if (pdmValut.IsLoggedIn)
+            {
 
-            return (string)user.UserData;
+                IEdmUserMgr5 userMgr = (IEdmUserMgr5)pdmValut;
+
+                IEdmUser6 user = (IEdmUser6)userMgr.GetLoggedInUser();
+
+                return (string)user.UserData;
+
+            }
+            else
+            {
+                return GlobalConfig.AuthorDefault;
+            }
+
         }
     }
 }
