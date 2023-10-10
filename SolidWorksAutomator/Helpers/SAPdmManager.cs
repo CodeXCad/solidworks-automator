@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace SolidWorksAutomator.Helpers
 {
@@ -16,7 +17,16 @@ namespace SolidWorksAutomator.Helpers
         /// <returns>The string of the username connected to the Vault</returns>
         public static string GetPdmUserName(IEdmVault5 pdmValut)
         {
-            pdmValut.LoginAuto(GlobalConfig.VaultName, 0);
+            try
+            {
+                pdmValut.LoginAuto(GlobalConfig.VaultName, 0);
+            }
+            catch (System.Runtime.InteropServices.COMException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return GlobalConfig.AuthorDefault;
+            }
+
 
             if (pdmValut.IsLoggedIn)
             {
