@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GlobalConfig.cs" />
+    <Compile Include="Helpers\SAPdmManager.cs" />
     <Compile Include="Helpers\SAPropertyManager.cs" />
     <Compile Include="Helpers\SASelectionManager.cs" />
     <Compile Include="MacrosProperty\SetAuthorMacro.cs" />
