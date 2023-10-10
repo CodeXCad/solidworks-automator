@@ -1,4 +1,4 @@
-﻿using EdmLib;
+﻿using EPDM.Interop.epdm;
 using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;
 using SolidWorksAutomator.Helpers;
