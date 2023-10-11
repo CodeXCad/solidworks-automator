@@ -15,6 +15,7 @@ namespace SolidWorksAutomator
         {
             // TODOs:
             // Check if there is an open file
+            // Check if the file is saved
             // Check what type of file is open
             // Process drawing
             //  Export drawing
