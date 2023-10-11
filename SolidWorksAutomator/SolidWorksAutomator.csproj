@@ -33,11 +33,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EPDM.Interop.epdm">
+      <HintPath>..\..\..\Program Files\SOLIDWORKS Corp\SOLIDWORKS PDM\EPDM.Interop.epdm.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="EPDM.Interop.EPDMResultCode">
+      <HintPath>..\..\..\Program Files\SOLIDWORKS Corp\SOLIDWORKS PDM\EPDM.Interop.EPDMResultCode.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="SolidWorks.Interop.sldworks, Version=28.1.0.74, Culture=neutral, PublicKeyToken=7c4797c3e4eeac03, processorArchitecture=MSIL">
       <HintPath>..\packages\Xarial.XCad.SolidWorks.Interops.0.3.0\lib\net40\SolidWorks.Interop.sldworks.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>True</Private>
     </Reference>
     <Reference Include="SolidWorks.Interop.swconst, Version=28.1.0.74, Culture=neutral, PublicKeyToken=19f43e188e4269d8, processorArchitecture=MSIL">
       <HintPath>..\packages\Xarial.XCad.SolidWorks.Interops.0.3.0\lib\net40\SolidWorks.Interop.swconst.dll</HintPath>
@@ -69,11 +78,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SAPropertyManager.cs" />
+    <Compile Include="GlobalConfig.cs" />
+    <Compile Include="Helpers\SAPdmManager.cs" />
+    <Compile Include="Helpers\SAPropertyManager.cs" />
+    <Compile Include="Helpers\SASelectionManager.cs" />
+    <Compile Include="MacrosProperty\SetAuthorMacro.cs" />
     <Compile Include="SolidWorksAutomatorAddIn.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="MacrosProperty\README.md" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
