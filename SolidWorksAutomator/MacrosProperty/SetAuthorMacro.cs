@@ -46,9 +46,7 @@ namespace SolidWorksAutomator
             #endregion
 
             // Get user from PDM
-            IEdmVault5 valut = new EdmVault5();
-
-            string userName = SAPdmManager.GetPdmUserName(valut);
+            string userName = SAPdmManager.GetPdmUserName();
 
             // Get the list of selected components
             List<Component2> vComp = new List<Component2>();
@@ -72,12 +70,15 @@ namespace SolidWorksAutomator
                 }
             }
 
-            // SetCustomProperty to the list of model object
-            for (int i = 0; i < models.Count; i++)
+            // Set author in each member of the list of model object
+            if (userName != string.Empty)
             {
-                var prpManager = new SAPropertyManager();
+                for (int i = 0; i < models.Count; i++)
+                {
+                    var prpManager = new SAPropertyManager();
 
-                prpManager.SetCustomProperty(models[i], GlobalConfig.AuthorPropName, userName);                
+                    prpManager.SetCustomProperty(models[i], GlobalConfig.AuthorPropName, userName);                
+                }                
             }
         }
     }
