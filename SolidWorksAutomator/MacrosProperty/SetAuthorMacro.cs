@@ -15,7 +15,7 @@ namespace SolidWorksAutomator
     public class SetAuthorMacro
     {
         /// <summary>
-        /// Write the author in the custom properties
+        /// Write the username connected to PDM in the custom property of the selected file or in the active file if selection is empty
         /// </summary>
         public static void SetAuthor()
         {
@@ -50,6 +50,30 @@ namespace SolidWorksAutomator
 
             // If nothing is selected add the active model to the list of model object
             List < ModelDoc2> models = SASelectionManager.GetSelectedModels(swModel);
+
+            // Set author in each member of the list of model object
+            if (userName != string.Empty)
+            {
+                for (int i = 0; i < models.Count; i++)
+                {
+                    var prpManager = new SAPropertyManager();
+
+                    prpManager.SetCustomProperty(models[i], GlobalConfig.AuthorPropName, userName);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Write the username connected to PDM in the custom property of the selected file or in the active file if selection is empty
+        /// </summary>
+        /// <param name="swModel">The active ModelDoc2 istance</param>
+        public static void SetAuthor(ModelDoc2 swModel)
+        {
+            // Get user from PDM
+            string userName = SAPdmManager.GetPdmUserName();
+
+            // If nothing is selected add the active model to the list of model object
+            List<ModelDoc2> models = SASelectionManager.GetSelectedModels(swModel);
 
             // Set author in each member of the list of model object
             if (userName != string.Empty)
