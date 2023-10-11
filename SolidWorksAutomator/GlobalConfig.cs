@@ -10,8 +10,6 @@ namespace SolidWorksAutomator
     {
         public const string VaultName = "VAULT_BL";
 
-        public const string AuthorPropName = "Disegnatore";
-
-        public const string AuthorDefault = "U.T.";
+        public const string AuthorPropName = "Author";
     }
 }
