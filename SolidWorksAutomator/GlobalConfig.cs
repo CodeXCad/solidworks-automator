@@ -12,6 +12,6 @@ namespace SolidWorksAutomator
 
         public const string AuthorPropName = "Disegnatore";
 
-        public const string AuthorDefault = "Author";
+        public const string AuthorDefault = "U.T.";
     }
 }
