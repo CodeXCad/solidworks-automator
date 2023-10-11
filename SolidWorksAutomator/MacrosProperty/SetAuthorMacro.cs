@@ -48,27 +48,8 @@ namespace SolidWorksAutomator
             // Get user from PDM
             string userName = SAPdmManager.GetPdmUserName();
 
-            // Get the list of selected components
-            List<Component2> vComp = new List<Component2>();
-
-            vComp = SASelectionManager.GetSelectedComponents((SelectionMgr)swModel.SelectionManager);
-
             // If nothing is selected add the active model to the list of model object
-            List<ModelDoc2> models = new List<ModelDoc2>();
-
-            if (vComp.Count == 0)
-            {
-                models.Add(swModel);
-                
-            }
-            else
-            {
-                for (int i = 0; i < vComp.Count; i++)
-                {
-                    ModelDoc2 selModel = (ModelDoc2)vComp[i].GetModelDoc2();
-                    models.Add(selModel);
-                }
-            }
+            List < ModelDoc2> models = SASelectionManager.GetSelectedModels(swModel);
 
             // Set author in each member of the list of model object
             if (userName != string.Empty)
@@ -77,8 +58,8 @@ namespace SolidWorksAutomator
                 {
                     var prpManager = new SAPropertyManager();
 
-                    prpManager.SetCustomProperty(models[i], GlobalConfig.AuthorPropName, userName);                
-                }                
+                    prpManager.SetCustomProperty(models[i], GlobalConfig.AuthorPropName, userName);
+                }
             }
         }
     }
