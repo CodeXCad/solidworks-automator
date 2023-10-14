@@ -34,12 +34,12 @@ namespace SolidWorksAutomator.Helpers
                 }
                 else
                 {
-                    return GlobalConfig.AuthorDefault;
+                    return Environment.UserName;
                 }
             }
             catch (System.Runtime.InteropServices.COMException ex)
             {
-                MessageBox.Show("Impossibile connettersi al Vault. Autore non impostato.", "Imposta autore");
+                MessageBox.Show("Unable to connect to SolidWorks PDM. Author not set.", "Set author");
                 Debug.WriteLine(ex.Message);
                 return string.Empty;
             }

@@ -8,10 +8,14 @@ namespace SolidWorksAutomator
 {
     public static class GlobalConfig
     {
+        /// <summary>
+        /// The name of the Vault database for SolidWorks PDM
+        /// </summary>
         public const string VaultName = "VAULT_BL";
 
-        public const string AuthorPropName = "Disegnatore";
-
-        public const string AuthorDefault = "U.T.";
+        /// <summary>
+        /// The name of the custom property for the author of the file
+        /// </summary>
+        public const string AuthorPropName = "Author";
     }
 }

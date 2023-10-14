@@ -35,11 +35,11 @@
   <ItemGroup>
     <Reference Include="EPDM.Interop.epdm">
       <HintPath>..\..\..\Program Files\SOLIDWORKS Corp\SOLIDWORKS PDM\EPDM.Interop.epdm.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="EPDM.Interop.EPDMResultCode">
       <HintPath>..\..\..\Program Files\SOLIDWORKS Corp\SOLIDWORKS PDM\EPDM.Interop.EPDMResultCode.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -82,6 +82,7 @@
     <Compile Include="Helpers\SAPdmManager.cs" />
     <Compile Include="Helpers\SAPropertyManager.cs" />
     <Compile Include="Helpers\SASelectionManager.cs" />
+    <Compile Include="MacrosFile\ExportFileMacro.cs" />
     <Compile Include="MacrosProperty\SetAuthorMacro.cs" />
     <Compile Include="SolidWorksAutomatorAddIn.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
